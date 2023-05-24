@@ -1,6 +1,5 @@
 import { PodcastSummaryType } from '../../hooks/usePodcasts/types'
 import { useNavigate } from 'react-router-dom'
-
 type PodcastSummaryProps = {
   podcast: PodcastSummaryType
 }
