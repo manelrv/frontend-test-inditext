@@ -1,12 +1,12 @@
 const Header = () => {
   return (
-    <header className={'header flex justify-between'}>
+    <header className={'header flex justify-between border-b pb-4'}>
       <button>
-        <p className={'text-blue-200 text-2xl font-bold items-center'}>
+        <p className={'items-center text-2xl font-bold text-blue-600'}>
           Podcaster
         </p>
       </button>
-      <div className={'w-6 h-6 rounded-full animate-pulse bg-blue-400'}></div>
+      <div className={'h-6 w-6 animate-pulse rounded-full bg-blue-600'}></div>
     </header>
   )
 }
