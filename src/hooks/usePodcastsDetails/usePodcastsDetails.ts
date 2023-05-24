@@ -15,6 +15,7 @@ const usePodcastsDetails = (podcastId?: string) => {
   useEffect(() => {
     const source = axios.CancelToken.source()
     const fetchPodcastDetails = async () => {
+      if (!podcastId) return
       const storedDetails = podcastsDetails.find(
         (podcast) => podcast.podcastId === podcastId
       )
