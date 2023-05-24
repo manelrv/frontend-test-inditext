@@ -1,12 +1,17 @@
 import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
-import axios from 'axios'
+import axios, { CancelToken } from 'axios'
 import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
 
-export const getPodcasts = async () => {
+export const getPodcasts = async ({
+  cancelToken
+}: {
+  cancelToken: CancelToken
+}) => {
   const response = await axios.get(
     `https://api.allorigins.win/get?url=${encodeURIComponent(
       'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
-    )}`
+    )}`,
+    { cancelToken }
   )
   const contents = await JSON.parse(response.data.contents)
   const rawPodcasts = contents.feed.entry
@@ -21,12 +26,18 @@ export const getPodcasts = async () => {
   })
 }
 
-export const getPodcastDetailsById = async (id: string) => {
-  console.log({ id })
+export const getPodcastDetailsById = async ({
+  podcastId,
+  cancelToken
+}: {
+  podcastId: string
+  cancelToken: CancelToken
+}) => {
   const response = await axios.get(
     `https://api.allorigins.win/get?url=${encodeURIComponent(
-      `https://itunes.apple.com/lookup?id=${id}&media=podcast &entity=podcastEpisode`
-    )}`
+      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast &entity=podcastEpisode`
+    )}`,
+    { cancelToken }
   )
   const contents = await JSON.parse(response.data.contents)
   const episodes: PodcastEpisode[] = contents.results.map((podcast: any) => {
@@ -40,7 +51,7 @@ export const getPodcastDetailsById = async (id: string) => {
     }
   })
   const podcastDetailsData: PodcastDetails = {
-    podcastId: id,
+    podcastId,
     timestamp: Date.now(),
     episodes
   }

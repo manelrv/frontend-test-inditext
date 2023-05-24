@@ -4,6 +4,7 @@ import usePodcastsDetailsStore from '../../infrastructure/stores/podcastsDetails
 import { PodcastDetails } from '../../infrastructure/types/types'
 import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import axios from 'axios'
 
 const usePodcastsDetails = (podcastId: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
@@ -12,6 +13,7 @@ const usePodcastsDetails = (podcastId: string) => {
   const { setLoading } = useFetchStatusStore()
 
   useEffect(() => {
+    const source = axios.CancelToken.source()
     const fetchPodcastDetails = async () => {
       const storedDetails = podcastsDetails.find(
         (podcast) => podcast.podcastId === podcastId
@@ -23,7 +25,10 @@ const usePodcastsDetails = (podcastId: string) => {
       }
 
       setLoading(true)
-      const podcastDetails = await getPodcastDetailsById(podcastId)
+      const podcastDetails = await getPodcastDetailsById({
+        podcastId,
+        cancelToken: source.token
+      })
       setLoading(false)
       if (!podcastDetails) return
 
@@ -31,6 +36,10 @@ const usePodcastsDetails = (podcastId: string) => {
       setPodcastsDetails([...podcastsDetails, podcastDetails])
     }
     fetchPodcastDetails()
+    return () => {
+      source.cancel('Podcast details request cancelled')
+      setLoading(false)
+    }
   }, [podcastId])
 
   return {
