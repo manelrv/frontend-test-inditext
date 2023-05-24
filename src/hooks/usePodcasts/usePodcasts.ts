@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
-import { getPodcasts } from '../../services/podcasts/podcasts'
+import {
+  getPodcasts,
+  getPodcastDetailsById
+} from '../../infrastructure/services/podcasts/podcasts'
 import usePodcastsStore from '../../stores/podcastsStore'
 
 const MILLISECONDS_IN_HOUR = 3600000
@@ -19,6 +22,7 @@ const usePodcasts = () => {
       const newpodcasts = await getPodcasts()
       setPodcasts(newpodcasts)
       setTimestamp(now)
+      getPodcastDetailsById('934552872')
     }
     fetchPodcasts()
   }, [])

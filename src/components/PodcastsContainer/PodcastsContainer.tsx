@@ -1,4 +1,4 @@
-import { Podcast } from '../../hooks/usePodcasts/types'
+import { Podcast } from '../../infrastructure/types/types'
 import PodcastSummary from '../PodcastSummary/PodcastSummary'
 
 const PodcastsContainer = ({ podcasts }: { podcasts: Podcast[] }) => {
