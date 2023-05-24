@@ -13,12 +13,10 @@ const PodcastPage = () => {
   const { currentPodcastDetails, numberOfEpisodes } = usePodcastsDetails(
     podcastId ?? ''
   )
-  console.log({ currentPodcastDetails })
   const podcast: Podcast = useMemo(
     () => getPodcastById(podcastId ?? '') ?? ({} as Podcast),
     [podcastId]
   )
-  console.log({ podcast })
   return (
     <div className={'podcast-page grid grid-cols-3 gap-10'}>
       <section className={''}>

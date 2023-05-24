@@ -2,7 +2,6 @@ import { Podcast } from '../../infrastructure/types/types'
 
 const PodcastCard = ({ podcast }: { podcast: Podcast }) => {
   const { name, artist, description, image } = podcast
-  console.log({ podcast })
   return (
     <div
       className={

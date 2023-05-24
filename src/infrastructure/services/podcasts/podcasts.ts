@@ -55,6 +55,5 @@ export const getPodcastDetailsById = async ({
     timestamp: Date.now(),
     episodes
   }
-  console.log({ podcastDetailsData, results: contents.results })
   return podcastDetailsData
 }
