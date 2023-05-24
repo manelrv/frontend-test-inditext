@@ -1,0 +1,2 @@
+export const MILLISECONDS_IN_HOUR = 3600000
+export const DELAY_IN_HOURS = 24

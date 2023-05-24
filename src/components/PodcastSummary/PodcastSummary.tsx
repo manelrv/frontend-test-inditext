@@ -4,14 +4,14 @@ type PodcastSummaryProps = {
   podcast: PodcastSummaryType
 }
 const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {
-  const { name, artist, image, id } = podcast
+  const { name, artist, image, podcastId } = podcast
   const navigate = useNavigate()
   return (
     <div
       className={
         'podcast-summary relative mb-16 flex cursor-pointer flex-col items-center rounded-lg border p-4 shadow-lg transition-all duration-500 hover:shadow-2xl'
       }
-      onClick={() => navigate(`/podcast/${id}`)}
+      onClick={() => navigate(`/podcast/${podcastId}`)}
     >
       <img
         src={image}

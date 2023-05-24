@@ -6,7 +6,7 @@ import Header from './components/Header'
 function App() {
   return (
     <BrowserRouter>
-      <div className={'body flex flex-col gap-8'}>
+      <div className={'body mb-10 flex flex-col gap-8'}>
         <Header />
         <main>
           <Routes>
