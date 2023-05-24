@@ -1,5 +1,5 @@
 export interface Podcast {
-  id: string
+  podcastId: string
   name: string
   image: string
   artist: string
@@ -9,6 +9,7 @@ export interface Podcast {
 export type PodcastSummaryType = Omit<Podcast, 'description'>
 
 export interface PodcastEpisode {
+  episodeId: string
   title: string
   date: string
   duration: string
@@ -16,7 +17,12 @@ export interface PodcastEpisode {
   streamUrl: string
 }
 export interface PodcastDetails {
-  id: string
+  podcastId: string
   timestamp: number
   episodes: PodcastEpisode[]
 }
+
+export type PodcastEpisodeRow = Omit<
+  PodcastEpisode,
+  'description' | 'streamUrl'
+>

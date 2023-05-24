@@ -2,17 +2,19 @@ import { getPodcastDetailsById } from '../../infrastructure/services/podcasts/po
 import { useEffect, useState } from 'react'
 import usePodcastsDetailsStore from '../../infrastructure/stores/podcastsDetailsStore'
 import { PodcastDetails } from '../../infrastructure/types/types'
-import checkElapsedTime from '../../infrastructure/helpers/checkElapsedTime'
+import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 
 const usePodcastsDetails = (podcastId: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
   const [currentPodcastDetails, setCurrentPodcastDetails] =
     useState<PodcastDetails>({} as PodcastDetails)
+  const { setLoading } = useFetchStatusStore()
 
   useEffect(() => {
     const fetchPodcastDetails = async () => {
       const storedDetails = podcastsDetails.find(
-        (podcast) => podcast.id === podcastId
+        (podcast) => podcast.podcastId === podcastId
       )
 
       if (storedDetails && checkElapsedTime(storedDetails.timestamp)) {
@@ -20,8 +22,9 @@ const usePodcastsDetails = (podcastId: string) => {
         return
       }
 
-      console.log({ podcastId })
+      setLoading(true)
       const podcastDetails = await getPodcastDetailsById(podcastId)
+      setLoading(false)
       if (!podcastDetails) return
 
       setCurrentPodcastDetails(podcastDetails)

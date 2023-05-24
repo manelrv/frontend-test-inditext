@@ -1,6 +1,6 @@
 import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
 import axios from 'axios'
-import { convertMillisecondsToHHMMSS } from '../../helpers/convertMillisecondsToHHMMSS'
+import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
 
 export const getPodcasts = async () => {
   const response = await axios.get(
@@ -12,7 +12,7 @@ export const getPodcasts = async () => {
   const rawPodcasts = contents.feed.entry
   return rawPodcasts.map((podcast: any) => {
     return {
-      id: podcast.id.attributes['im:id'],
+      podcastId: podcast.id.attributes['im:id'],
       name: podcast['im:name'].label,
       image: podcast['im:image'][2].label,
       artist: podcast['im:artist'].label,
@@ -31,6 +31,7 @@ export const getPodcastDetailsById = async (id: string) => {
   const contents = await JSON.parse(response.data.contents)
   const episodes: PodcastEpisode[] = contents.results.map((podcast: any) => {
     return {
+      episodeId: podcast.trackId,
       title: podcast.trackName,
       date: podcast.releaseDate,
       duration: convertMillisecondsToHHMMSS(podcast.trackTimeMillis),
@@ -39,7 +40,7 @@ export const getPodcastDetailsById = async (id: string) => {
     }
   })
   const podcastDetailsData: PodcastDetails = {
-    id,
+    podcastId: id,
     timestamp: Date.now(),
     episodes
   }

@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import PodcastCard from '../../components/PodcastCard'
 import usePodcastsDetails from '../../hooks/usePodcastsDetails'
 import ListOfEpisodesHeader from '../../components/ListOfEpisodesHeader'
+import EpisodesGrid from '../../components/EpisodesGrid'
 
 const PodcastPage = () => {
   const { podcastId } = useParams()
@@ -23,8 +24,12 @@ const PodcastPage = () => {
       <section className={''}>
         <PodcastCard podcast={podcast} />
       </section>
-      <section className={'col-span-2'}>
+      <section className={'col-span-2 flex flex-col gap-8'}>
         <ListOfEpisodesHeader numberOfEpisodes={numberOfEpisodes} />
+        <EpisodesGrid
+          episodes={currentPodcastDetails?.episodes ?? []}
+          podcastId={currentPodcastDetails.podcastId}
+        />
       </section>
     </div>
   )
