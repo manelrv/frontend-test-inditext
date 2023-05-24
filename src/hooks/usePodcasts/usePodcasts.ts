@@ -22,7 +22,12 @@ const usePodcasts = () => {
     }
     fetchPodcasts()
   }, [])
-  return { podcasts }
+
+  const getPodcastById = (id: string) => {
+    return podcasts.find((podcast) => podcast.id === id)
+  }
+
+  return { podcasts, getPodcastById }
 }
 
 export default usePodcasts
