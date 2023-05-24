@@ -6,7 +6,7 @@ import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import axios from 'axios'
 
-const usePodcastsDetails = (podcastId: string) => {
+const usePodcastsDetails = (podcastId?: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
   const [currentPodcastDetails, setCurrentPodcastDetails] =
     useState<PodcastDetails>({} as PodcastDetails)
@@ -26,7 +26,7 @@ const usePodcastsDetails = (podcastId: string) => {
 
       setLoading(true)
       const podcastDetails = await getPodcastDetailsById({
-        podcastId,
+        podcastId: podcastId as string,
         cancelToken: source.token
       })
       setLoading(false)
@@ -42,9 +42,24 @@ const usePodcastsDetails = (podcastId: string) => {
     }
   }, [podcastId])
 
+  const getEpisodeByPodcastAndEpisodeId = ({
+    podcastId,
+    episodeId
+  }: {
+    podcastId: string
+    episodeId: string
+  }) => {
+    const podcast = podcastsDetails.find(
+      (podcast) => podcast.podcastId === podcastId
+    )
+    if (!podcast) return
+    return podcast.episodes.find((episode) => episode.episodeId === episodeId)
+  }
+
   return {
     currentPodcastDetails,
-    numberOfEpisodes: currentPodcastDetails?.episodes?.length ?? 0
+    numberOfEpisodes: currentPodcastDetails?.episodes?.length ?? 0,
+    getEpisodeByPodcastAndEpisodeId
   }
 }
 

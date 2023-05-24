@@ -40,16 +40,18 @@ export const getPodcastDetailsById = async ({
     { cancelToken }
   )
   const contents = await JSON.parse(response.data.contents)
-  const episodes: PodcastEpisode[] = contents.results.map((podcast: any) => {
+  const episodes: PodcastEpisode[] = contents?.results?.map((podcast: any) => {
     return {
-      episodeId: podcast.trackId,
+      episodeId: podcast.trackId.toString(),
       title: podcast.trackName,
       date: podcast.releaseDate,
-      duration: convertMillisecondsToHHMMSS(podcast.trackTimeMillis),
+      duration:
+        convertMillisecondsToHHMMSS(podcast.trackTimeMillis) ?? 'no data',
       description: podcast.description,
       streamUrl: podcast.previewUrl
     }
   })
+  episodes.shift()
   const podcastDetailsData: PodcastDetails = {
     podcastId,
     timestamp: Date.now(),
