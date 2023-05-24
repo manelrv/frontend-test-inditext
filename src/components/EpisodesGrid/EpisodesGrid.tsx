@@ -16,7 +16,9 @@ const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps) => {
         'episodes-grid flex w-full flex-col gap-2 border border-gray-50 p-4 shadow-lg'
       }
     >
-      <div className={'grid-header grid grid-cols-6 px-2 text-lg font-bold'}>
+      <div
+        className={'grid-header grid grid-cols-6 gap-4 px-2 text-lg font-bold'}
+      >
         <GridHeader />
       </div>
       {loading ? (

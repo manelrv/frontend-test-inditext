@@ -14,7 +14,7 @@ const EpisodeRow = ({ podcastId, episode, index }: EpisodeRowProps) => {
   }
   return (
     <div
-      className={`episode-row grid grid-cols-6 p-2 text-lg ${
+      className={`episode-row grid grid-cols-6 gap-4 p-2 text-lg ${
         index % 2 === 0 ? 'border-y bg-zinc-50' : ' bg-white'
       }`}
     >
