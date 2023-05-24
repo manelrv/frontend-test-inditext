@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { Podcast } from '../../hooks/usePodcasts/types'
+import { Podcast } from '../../infrastructure/types/types'
 
 interface PodcastsStore {
   podcasts: Podcast[]
