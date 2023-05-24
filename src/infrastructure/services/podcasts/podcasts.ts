@@ -22,6 +22,7 @@ export const getPodcasts = async () => {
 }
 
 export const getPodcastDetailsById = async (id: string) => {
+  console.log({ id })
   const response = await axios.get(
     `https://api.allorigins.win/get?url=${encodeURIComponent(
       `https://itunes.apple.com/lookup?id=${id}&media=podcast &entity=podcastEpisode`

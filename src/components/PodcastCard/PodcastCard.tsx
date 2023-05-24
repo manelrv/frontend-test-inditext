@@ -6,7 +6,7 @@ const PodcastCard = ({ podcast }: { podcast: Podcast }) => {
   return (
     <div
       className={
-        'podcast-card flex flex-col  gap-4 divide-y-2 px-4 py-6 shadow-xl'
+        'podcast-card flex flex-col gap-4 divide-y-2 border border-gray-50 px-4 py-6 shadow-xl'
       }
     >
       <img src={image} alt={name} className={'px-10'} />

@@ -1,28 +1,18 @@
 import { useEffect } from 'react'
-import {
-  getPodcasts,
-  getPodcastDetailsById
-} from '../../infrastructure/services/podcasts/podcasts'
-import usePodcastsStore from '../../stores/podcastsStore'
-
-const MILLISECONDS_IN_HOUR = 3600000
-const DELAY_IN_HOURS = 24
+import { getPodcasts } from '../../infrastructure/services/podcasts/podcasts'
+import usePodcastsStore from '../../infrastructure/stores/podcastsStore'
+import checkElapsedTime from '../../infrastructure/helpers/checkElapsedTime'
 
 const usePodcasts = () => {
   const { podcasts, setPodcasts, timestamp, setTimestamp } = usePodcastsStore()
 
   useEffect(() => {
     const now = Date.now()
-    if (
-      podcasts.length > 0 &&
-      (now - timestamp) / MILLISECONDS_IN_HOUR < DELAY_IN_HOURS
-    )
-      return
+    if (podcasts.length > 0 && checkElapsedTime(timestamp)) return
     const fetchPodcasts = async () => {
       const newpodcasts = await getPodcasts()
       setPodcasts(newpodcasts)
       setTimestamp(now)
-      getPodcastDetailsById('934552872')
     }
     fetchPodcasts()
   }, [])
