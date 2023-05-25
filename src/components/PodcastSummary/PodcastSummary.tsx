@@ -1,17 +1,21 @@
-import { PodcastSummaryType } from '../../hooks/usePodcasts/types'
+import { PodcastSummaryType } from '../../infrastructure/types/types'
+import { useNavigate } from 'react-router-dom'
 type PodcastSummaryProps = {
   podcast: PodcastSummaryType
 }
 const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {
-  const { name, artist, image } = podcast
+  const { name, artist, image, podcastId } = podcast
+  const navigate = useNavigate()
   return (
     <div
       className={
         'podcast-summary relative mb-16 flex cursor-pointer flex-col items-center rounded-lg border p-4 shadow-lg transition-all duration-500 hover:shadow-2xl'
       }
+      onClick={() => navigate(`/podcast/${podcastId}`)}
     >
       <img
         src={image}
+        loading={'lazy'}
         alt={name}
         className={
           'absolute -top-16 h-32 w-32 rounded-full border border-zinc-200'

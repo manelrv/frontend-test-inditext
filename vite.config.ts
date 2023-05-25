@@ -8,8 +8,8 @@ export default () => {
   return defineConfig({
     plugins: [react()],
     build: {
-      minify: process.env.VITE_MODE !== 'DEVELOPMENT',
-      cssMinify: process.env.VITE_MODE !== 'DEVELOPMENT'
+      minify: process.env.VITE_MODE === 'PRODUCTION',
+      cssMinify: process.env.VITE_MODE === 'PRODUCTION'
     }
   })
 }

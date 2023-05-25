@@ -1,4 +1,4 @@
-import { Podcast } from '../usePodcasts/types'
+import { Podcast } from '../../infrastructure/types/types'
 import { useState, useEffect, ChangeEvent } from 'react'
 import usePodcasts from '../usePodcasts'
 

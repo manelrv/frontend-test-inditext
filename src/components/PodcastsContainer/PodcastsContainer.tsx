@@ -1,11 +1,17 @@
-import { Podcast } from '../../hooks/usePodcasts/types'
+import { Podcast } from '../../infrastructure/types/types'
 import PodcastSummary from '../PodcastSummary/PodcastSummary'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import Loading from '../Loading'
 
 const PodcastsContainer = ({ podcasts }: { podcasts: Podcast[] }) => {
+  const { loading } = useFetchStatusStore()
+  if (loading) {
+    return <Loading />
+  }
   return (
     <section className={'podcasts-container mt-20 grid grid-cols-4 gap-6'}>
-      {podcasts.map((podcast) => (
-        <PodcastSummary key={podcast.id} podcast={podcast} />
+      {podcasts?.map((podcast) => (
+        <PodcastSummary key={podcast.podcastId} podcast={podcast} />
       ))}
     </section>
   )

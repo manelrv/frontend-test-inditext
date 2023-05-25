@@ -1,28 +1,46 @@
 import { useEffect } from 'react'
-import { getPodcasts } from '../../services/podcasts/podcasts'
-import usePodcastsStore from '../../stores/podcastsStore'
-
-const MILLISECONDS_IN_HOUR = 3600000
-const DELAY_IN_HOURS = 24
+import { getPodcasts } from '../../infrastructure/services/podcasts/podcasts'
+import usePodcastsStore from '../../infrastructure/stores/podcastsStore'
+import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import axios from 'axios'
+import { DELAY_IN_HOURS_REFRESH_ALL_PODCASTS } from '../../infrastructure/constants/constants'
 
 const usePodcasts = () => {
   const { podcasts, setPodcasts, timestamp, setTimestamp } = usePodcastsStore()
-
+  const { setLoading } = useFetchStatusStore()
   useEffect(() => {
-    const now = Date.now()
     if (
       podcasts.length > 0 &&
-      (now - timestamp) / MILLISECONDS_IN_HOUR < DELAY_IN_HOURS
+      checkElapsedTime({
+        timestamp,
+        delayInHours: DELAY_IN_HOURS_REFRESH_ALL_PODCASTS
+      })
     )
       return
+    const now = Date.now()
+    const source = axios.CancelToken.source()
+
     const fetchPodcasts = async () => {
-      const newpodcasts = await getPodcasts()
+      setLoading(true)
+      setPodcasts([])
+      const newpodcasts = await getPodcasts({ cancelToken: source.token })
       setPodcasts(newpodcasts)
       setTimestamp(now)
+      setLoading(false)
     }
     fetchPodcasts()
+    return () => {
+      source.cancel('Podcasts request cancelled')
+      setLoading(false)
+    }
   }, [])
-  return { podcasts }
+
+  const getPodcastById = (id: string) => {
+    return podcasts.find((podcast) => podcast.podcastId === id)
+  }
+
+  return { podcasts, getPodcastById }
 }
 
 export default usePodcasts

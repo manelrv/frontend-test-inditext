@@ -1,12 +1,14 @@
 import './App.css'
 import { Route, Routes, BrowserRouter, RouteObject } from 'react-router-dom'
-import ROUTES from './configuration/constants/routes'
+import ROUTES from './infrastructure/constants/routes'
 import Header from './components/Header'
+import ScrollToTop from './infrastructure/helpers/ScrollToTop'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className={'body flex flex-col gap-8'}>
+      <ScrollToTop />
+      <div className={'body mb-10 flex flex-col gap-8 px-4'}>
         <Header />
         <main>
           <Routes>

@@ -13,5 +13,6 @@ module.exports = {
     'react-refresh/only-export-components': 'warn',
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': 'error',
+    'react-hooks/exhaustive-deps': 'off'
   },
 }
