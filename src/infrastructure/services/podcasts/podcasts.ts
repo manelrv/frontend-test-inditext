@@ -13,19 +13,12 @@ export const getPodcasts = async ({
   cancelToken: CancelToken
 }) => {
   const response = await axios
-    .get(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(
-        URL_GET_PODCASTS
-      )}`,
-      { cancelToken }
-    )
+    .get(URL_GET_PODCASTS, { cancelToken })
     .catch((error) => {
       console.error({ message: error.message, stack: error.stack })
     })
-  if (!response) return [] as Podcast[]
-  const contents = validateJSON(response?.data?.contents)
-  if (!contents) return null
-  const rawPodcasts = contents.feed.entry
+  const rawPodcasts = response?.data?.feed?.entry
+  if (!rawPodcasts) return null
   return rawPodcasts.map((podcast: any) => {
     return {
       podcastId: podcast.id.attributes['im:id'],
