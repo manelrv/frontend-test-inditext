@@ -31,7 +31,7 @@ const InputSearch = ({
         value={filter}
         onChange={handleFilter}
         autoFocus
-        disabled={loading || podcastsCount === 0}
+        disabled={loading}
       />
     </section>
   )
