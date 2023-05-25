@@ -2,6 +2,7 @@ import { PodcastEpisodeRow } from '../../infrastructure/types/types'
 import GridHeader from './components/GridHeader'
 import EpisodeRow from './components/EpisodeRow'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import Loading from '../Loading'
 
 interface EpisodesGridProps {
   episodes: PodcastEpisodeRow[]
@@ -10,6 +11,9 @@ interface EpisodesGridProps {
 
 const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps) => {
   const { loading } = useFetchStatusStore()
+  if (loading) {
+    return <Loading />
+  }
   return (
     <div
       className={
@@ -21,11 +25,7 @@ const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps) => {
       >
         <GridHeader />
       </div>
-      {loading ? (
-        <div
-          className={'flex h-96 w-full animate-pulse rounded bg-slate-200'}
-        />
-      ) : episodes.length > 0 ? (
+      {episodes.length > 0 ? (
         episodes.map((episode, index) => (
           <EpisodeRow
             key={episode.episodeId}
@@ -37,7 +37,6 @@ const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps) => {
       ) : (
         <p>No episodes found</p>
       )}
-      {}
     </div>
   )
 }

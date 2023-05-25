@@ -15,6 +15,7 @@ const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {
     >
       <img
         src={image}
+        loading={'lazy'}
         alt={name}
         className={
           'absolute -top-16 h-32 w-32 rounded-full border border-zinc-200'

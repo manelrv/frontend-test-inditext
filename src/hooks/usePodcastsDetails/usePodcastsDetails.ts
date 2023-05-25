@@ -5,6 +5,7 @@ import { PodcastDetails } from '../../infrastructure/types/types'
 import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import axios from 'axios'
+import { DELAY_IN_HOURS_REFRESH_PODCAST_DETAILS } from '../../infrastructure/constants/constants'
 
 const usePodcastsDetails = (podcastId?: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
@@ -12,19 +13,14 @@ const usePodcastsDetails = (podcastId?: string) => {
     useState<PodcastDetails>({} as PodcastDetails)
   const { setLoading } = useFetchStatusStore()
 
+  /* This is a custom hook called `usePodcastsDetails` that takes in an optional `podcastId` parameter. It uses the
+  `useEffect` hook to fetch podcast details by calling the `getPodcastDetailsById` function from a service file. */
   useEffect(() => {
-    const source = axios.CancelToken.source()
-    const fetchPodcastDetails = async () => {
-      if (!podcastId) return
-      const storedDetails = podcastsDetails.find(
-        (podcast) => podcast.podcastId === podcastId
-      )
-
-      if (storedDetails && checkElapsedTime(storedDetails.timestamp)) {
-        setCurrentPodcastDetails(storedDetails)
-        return
-      }
-
+    const fetchPodcastDetails = async ({
+      prevPodcastsDetails
+    }: {
+      prevPodcastsDetails: PodcastDetails[]
+    }) => {
       setLoading(true)
       const podcastDetails = await getPodcastDetailsById({
         podcastId: podcastId as string,
@@ -34,9 +30,33 @@ const usePodcastsDetails = (podcastId?: string) => {
       if (!podcastDetails) return
 
       setCurrentPodcastDetails(podcastDetails)
-      setPodcastsDetails([...podcastsDetails, podcastDetails])
+      setPodcastsDetails([...prevPodcastsDetails, podcastDetails])
     }
-    fetchPodcastDetails()
+
+    if (!podcastId) return
+
+    const storedDetails = podcastsDetails.find(
+      (podcast) => podcast.podcastId === podcastId
+    )
+
+    const arePodcastDetailsCurrent = checkElapsedTime({
+      timestamp: storedDetails?.timestamp ?? 0,
+      delayInHours: DELAY_IN_HOURS_REFRESH_PODCAST_DETAILS
+    })
+
+    if (arePodcastDetailsCurrent) {
+      setCurrentPodcastDetails(storedDetails ?? ({} as PodcastDetails))
+      return
+    }
+
+    const source = axios.CancelToken.source()
+
+    fetchPodcastDetails({
+      prevPodcastsDetails: arePodcastDetailsCurrent
+        ? podcastsDetails
+        : podcastsDetails.filter((podcast) => podcast.podcastId !== podcastId)
+    })
+
     return () => {
       source.cancel('Podcast details request cancelled')
       setLoading(false)

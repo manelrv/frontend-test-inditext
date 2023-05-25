@@ -1,19 +1,30 @@
 import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
 import axios, { CancelToken } from 'axios'
 import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
+import {
+  URL_GET_PODCAST_DETAILS,
+  URL_GET_PODCASTS
+} from '../../constants/constants'
+import validateJSON from '../../utils/validateJSON'
 
 export const getPodcasts = async ({
   cancelToken
 }: {
   cancelToken: CancelToken
 }) => {
-  const response = await axios.get(
-    `https://api.allorigins.win/get?url=${encodeURIComponent(
-      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
-    )}`,
-    { cancelToken }
-  )
-  const contents = await JSON.parse(response.data.contents)
+  const response = await axios
+    .get(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(
+        URL_GET_PODCASTS
+      )}`,
+      { cancelToken }
+    )
+    .catch((error) => {
+      console.error({ message: error.message, stack: error.stack })
+    })
+  if (!response) return [] as Podcast[]
+  const contents = validateJSON(response?.data?.contents)
+  if (!contents) return null
   const rawPodcasts = contents.feed.entry
   return rawPodcasts.map((podcast: any) => {
     return {
@@ -33,13 +44,19 @@ export const getPodcastDetailsById = async ({
   podcastId: string
   cancelToken: CancelToken
 }) => {
-  const response = await axios.get(
-    `https://api.allorigins.win/get?url=${encodeURIComponent(
-      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast &entity=podcastEpisode`
-    )}`,
-    { cancelToken }
-  )
-  const contents = await JSON.parse(response.data.contents)
+  const response = await axios
+    .get(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(
+        eval(URL_GET_PODCAST_DETAILS)
+      )}`,
+      { cancelToken }
+    )
+    .catch((error) => {
+      console.error({ message: error.message, stack: error.stack })
+    })
+  if (!response) return null
+  const contents = validateJSON(response?.data?.contents)
+  if (!contents) return null
   const episodes: PodcastEpisode[] = contents?.results?.map((podcast: any) => {
     return {
       episodeId: podcast.trackId.toString(),

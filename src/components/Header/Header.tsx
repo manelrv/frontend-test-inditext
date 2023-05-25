@@ -16,9 +16,13 @@ const Header = () => {
       {loading && (
         <div
           className={
-            'h-6 w-6 animate-pulse rounded-full bg-gradient-to-r from-sky-500 to-indigo-50'
+            ' flex h-7 w-7 animate-spin items-center justify-center rounded-full bg-gradient-to-r from-violet-800 to-blue-400'
           }
-        ></div>
+        >
+          <div
+            className={' h-3 w-3 animate-pulse rounded-full bg-blue-900'}
+          ></div>
+        </div>
       )}
     </header>
   )

@@ -1,8 +1,14 @@
-import { DELAY_IN_HOURS, MILLISECONDS_IN_HOUR } from '../constants/constants'
+import { MILLISECONDS_IN_HOUR } from '../constants/constants'
 
-function checkElapsedTime(timestamp: number): boolean {
+function checkElapsedTime({
+  timestamp,
+  delayInHours
+}: {
+  timestamp: number
+  delayInHours: number
+}): boolean {
   const now = new Date().getTime()
-  return (now - timestamp) / MILLISECONDS_IN_HOUR < DELAY_IN_HOURS
+  return (now - timestamp) / MILLISECONDS_IN_HOUR < delayInHours
 }
 
 export default checkElapsedTime
