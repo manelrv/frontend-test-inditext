@@ -26,6 +26,7 @@ const PodcastCard = ({
     >
       <img
         src={podcast?.image}
+        loading={'lazy'}
         alt={podcast?.name}
         className={`px-10 ${allowNavitateToListOfEpisodes && 'cursor-pointer'}`}
         onClick={handleClick}

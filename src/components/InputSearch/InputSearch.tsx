@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 type InputSearchProps = {
   filter: string
   handleFilter: (e: ChangeEvent<HTMLInputElement>) => void
@@ -10,6 +11,7 @@ const InputSearch = ({
   handleFilter,
   podcastsCount
 }: InputSearchProps) => {
+  const { loading } = useFetchStatusStore()
   return (
     <section
       className={'input-search flex w-full items-center justify-end gap-4'}
@@ -19,7 +21,7 @@ const InputSearch = ({
           'rounded-xl bg-blue-600 px-4 py-1 text-xl font-bold text-white'
         }
       >
-        {podcastsCount}
+        {podcastsCount <= 0 ? '-' : podcastsCount}
       </p>
       <input
         className={
@@ -29,6 +31,7 @@ const InputSearch = ({
         value={filter}
         onChange={handleFilter}
         autoFocus
+        disabled={loading || podcastsCount === 0}
       />
     </section>
   )
