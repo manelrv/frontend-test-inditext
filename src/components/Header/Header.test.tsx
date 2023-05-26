@@ -1,15 +1,12 @@
-import Header from '../Header'
+import Header from './Header'
 import { render, renderHook, RenderResult, act } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { BrowserRouter } from 'react-router-dom'
 
-import useFetchStatusStore from '../../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 
 describe('<Header/>', () => {
   let component: RenderResult
-  jest.mock('react-router-dom', () => ({
-    useNavigate: jest.fn()
-  }))
   beforeEach(() => {
     component = render(
       <BrowserRouter>

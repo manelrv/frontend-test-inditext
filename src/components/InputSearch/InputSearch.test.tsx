@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect'
-import InputSearch from '../InputSearch'
+import InputSearch from './InputSearch'
 import {
   act,
   fireEvent,
@@ -7,7 +7,7 @@ import {
   renderHook,
   RenderResult
 } from '@testing-library/react'
-import useFetchStatusStore from '../../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 describe('InputSearch', () => {
   const PLACEHOLDER_TEXT = 'Discraceland, Andrew, etc...'
   let component: RenderResult

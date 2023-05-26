@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
-import EpisodeDetails from '../EpisodeDetails'
+import EpisodeDetails from './EpisodeDetails'
 import { render } from '@testing-library/react'
-import { PodcastEpisode } from '../../../infrastructure/types/types'
+import { PodcastEpisode } from '../../infrastructure/types/types'
 
 describe('EpisodeDetails', () => {
   test('renders_the_component_whith_correct_episode', async () => {
