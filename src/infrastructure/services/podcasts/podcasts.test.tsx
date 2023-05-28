@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { getPodcastDetailsById, getPodcasts } from './podcasts'
+import { getPodcasts } from './getPodcasts/getPodcasts'
 import { Podcast, PodcastDetails } from '../../types/types'
+import { getPodcastDetailsById } from './getPodcastDetailsById/getPodcastDetailsById'
 
 jest.mock('axios')
 

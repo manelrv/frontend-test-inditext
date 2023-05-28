@@ -1,4 +1,3 @@
-import { getPodcastDetailsById } from '../../infrastructure/services/podcasts/podcasts'
 import { useEffect, useState } from 'react'
 import usePodcastsDetailsStore from '../../infrastructure/stores/podcastsDetailsStore'
 import { PodcastDetails } from '../../infrastructure/types/types'
@@ -6,6 +5,7 @@ import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime/checkE
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import axios from 'axios'
 import { DELAY_IN_HOURS_REFRESH_PODCAST_DETAILS } from '../../infrastructure/constants/constants'
+import { getPodcastDetailsById } from '../../infrastructure/services/podcasts/getPodcastDetailsById/getPodcastDetailsById'
 
 const usePodcastsDetails = (podcastId?: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
