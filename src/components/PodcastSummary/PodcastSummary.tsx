@@ -1,6 +1,6 @@
 import { PodcastSummaryType } from '../../infrastructure/types/types'
 import { useNavigate } from 'react-router-dom'
-type PodcastSummaryProps = {
+export type PodcastSummaryProps = {
   podcast: PodcastSummaryType
 }
 const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {

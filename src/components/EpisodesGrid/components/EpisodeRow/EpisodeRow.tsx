@@ -1,5 +1,5 @@
 import { PodcastEpisodeRow } from '../../../../infrastructure/types/types'
-import { convertDate } from '../../../../infrastructure/utils/convertDate'
+import convertDate from '../../../../infrastructure/utils/convertDate/convertDate'
 import { useNavigate } from 'react-router-dom'
 interface EpisodeRowProps {
   podcastId: string

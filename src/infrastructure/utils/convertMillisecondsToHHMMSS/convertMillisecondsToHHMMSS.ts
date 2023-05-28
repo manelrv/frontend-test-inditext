@@ -3,7 +3,10 @@
  * @param {number} milliseconds - The number of milliseconds that you want to convert to the format HH:MM:SS.
  * @returns a formatted string representing the input time in hours, minutes, and seconds (HH:MM:SS) format.
  */
-export function convertMillisecondsToHHMMSS(milliseconds: number) {
+export default function convertMillisecondsToHHMMSS(milliseconds: number) {
+  if (milliseconds < 0 || milliseconds === Infinity) {
+    return '00:00'
+  }
   const hours = Math.floor(milliseconds / 3600000)
   const minutes = Math.floor((milliseconds % 3600000) / 60000)
   const seconds = Math.floor((milliseconds % 60000) / 1000)

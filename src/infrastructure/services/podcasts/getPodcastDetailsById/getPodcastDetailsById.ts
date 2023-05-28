@@ -1,34 +1,8 @@
-import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
 import axios, { CancelToken } from 'axios'
-import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
-import {
-  URL_GET_PODCAST_DETAILS,
-  URL_GET_PODCASTS
-} from '../../constants/constants'
-import validateJSON from '../../utils/validateJSON'
-
-export const getPodcasts = async ({
-  cancelToken
-}: {
-  cancelToken: CancelToken
-}) => {
-  const response = await axios
-    .get(URL_GET_PODCASTS, { cancelToken })
-    .catch((error) => {
-      console.error({ message: error.message, stack: error.stack })
-    })
-  const rawPodcasts = response?.data?.feed?.entry
-  if (!rawPodcasts) return null
-  return rawPodcasts.map((podcast: any) => {
-    return {
-      podcastId: podcast.id.attributes['im:id'],
-      name: podcast['im:name'].label,
-      image: podcast['im:image'][2].label,
-      artist: podcast['im:artist'].label,
-      description: podcast.summary.label
-    } as Podcast
-  })
-}
+import { URL_GET_PODCAST_DETAILS } from '../../../constants/constants'
+import validateJSON from '../../../utils/validateJSON/validateJSON'
+import { PodcastDetails, PodcastEpisode } from '../../../types/types'
+import convertMillisecondsToHHMMSS from '../../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 
 export const getPodcastDetailsById = async ({
   podcastId,

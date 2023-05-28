@@ -16,7 +16,7 @@ const EpisodePage = () => {
       <section>
         <PodcastCard
           podcastId={podcastId ?? ''}
-          allowNavitateToListOfEpisodes
+          allowNavigateToListOfEpisodes={true}
         />
       </section>
       <section className={'col-span-2 flex flex-col gap-8'}>
