@@ -20,7 +20,12 @@ const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
           : 'No description supplied'}
       </p>
       {episode?.streamUrl ? (
-        <audio src={episode?.streamUrl} controls={true} className={'w-full'} />
+        <audio
+          src={episode?.streamUrl}
+          controls={true}
+          className={'w-full'}
+          data-cy={'podcast-player'}
+        />
       ) : (
         <p>No audio available</p>
       )}
