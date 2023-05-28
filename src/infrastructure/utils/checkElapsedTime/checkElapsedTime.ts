@@ -1,4 +1,4 @@
-import { MILLISECONDS_IN_HOUR } from '../constants/constants'
+import { MILLISECONDS_IN_HOUR } from '../../constants/constants'
 
 function checkElapsedTime({
   timestamp,

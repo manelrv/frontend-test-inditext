@@ -4,6 +4,12 @@ import { act, render, renderHook } from '@testing-library/react'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 
 describe('ListOfEpisodesHeader', () => {
+  const originalState = useFetchStatusStore.getState()
+
+  beforeEach(() => {
+    useFetchStatusStore.setState(originalState)
+  })
+
   test('renders_the_component_and_the_correct_number_of_episodes', () => {
     const component = render(<ListOfEpisodesHeader numberOfEpisodes={1} />)
     expect(component.container).toHaveTextContent('1')
@@ -21,7 +27,6 @@ describe('ListOfEpisodesHeader', () => {
     act(() => {
       setLoading(true)
     })
-
     expect(component.getByText('Loading...')).toBeInTheDocument()
   })
 })

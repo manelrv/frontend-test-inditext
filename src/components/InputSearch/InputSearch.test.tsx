@@ -10,8 +10,10 @@ import {
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 describe('InputSearch', () => {
   const PLACEHOLDER_TEXT = 'Discraceland, Andrew, etc...'
+  const originalState = useFetchStatusStore.getState()
   let component: RenderResult
   beforeEach(() => {
+    useFetchStatusStore.setState(originalState)
     component = render(
       <InputSearch filter={''} handleFilter={() => null} podcastsCount={0} />
     )
@@ -36,18 +38,11 @@ describe('InputSearch', () => {
       setLoading(true)
     })
     const inputField = component.getByPlaceholderText(PLACEHOLDER_TEXT)
-
     expect(inputField).toBeDisabled()
   })
 
   test('test_enabled_input_field', () => {
-    const { setLoading } = renderHook(() => useFetchStatusStore()).result
-      .current
-    act(() => {
-      setLoading(false)
-    })
     const inputField = component.getByPlaceholderText(PLACEHOLDER_TEXT)
-
     expect(inputField).not.toBeDisabled()
   })
 

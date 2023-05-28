@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { getPodcasts } from '../../infrastructure/services/podcasts/podcasts'
 import usePodcastsStore from '../../infrastructure/stores/podcastsStore'
-import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime'
+import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime/checkElapsedTime'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import axios from 'axios'
 import { DELAY_IN_HOURS_REFRESH_ALL_PODCASTS } from '../../infrastructure/constants/constants'

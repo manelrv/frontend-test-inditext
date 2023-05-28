@@ -7,7 +7,9 @@ import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 
 describe('<Header/>', () => {
   let component: RenderResult
+  const originalState = useFetchStatusStore.getState()
   beforeEach(() => {
+    useFetchStatusStore.setState(originalState)
     component = render(
       <BrowserRouter>
         <Header />
@@ -15,11 +17,11 @@ describe('<Header/>', () => {
     )
   })
 
-  test('renders the component', () => {
+  test('renders_the_component', () => {
     expect(component.container).toHaveTextContent('Podcaster')
   })
 
-  test('renders a indicator when isLoading state from store is true', () => {
+  test('renders_a_indicator_when_isLoading_state_from_store_is_true', () => {
     const { setLoading } = renderHook(() => useFetchStatusStore()).result
       .current
     act(() => {
@@ -28,25 +30,21 @@ describe('<Header/>', () => {
     expect(component.getByTestId('loading-signal')).toBeInTheDocument()
   })
 
-  test('does not render a indicator when isLoading state from store is false', () => {
-    const { setLoading } = renderHook(() => useFetchStatusStore()).result
-      .current
-    act(() => {
-      setLoading(false)
-    })
+  test('does_not_render_a_indicator_when_isLoading_state_from_store_is_false', () => {
     const loadingCircle = component.queryByTestId('loading-signal')
     expect(loadingCircle).not.toBeInTheDocument()
   })
 
-  test('Cant navigate to home when on home', async () => {
+  test('Cant_navigate_to_home_when_on_home', async () => {
     expect(component.getByText('Podcaster').closest('button')).toBeDisabled()
   })
 
-  test('Can navigate to home when not on home', async () => {
+  test('Can_navigate_to_home_when_not_on_home', async () => {
     Object.defineProperty(window, 'location', {
       value: { pathname: '/not-at-home-page' },
       writable: true
     })
+
     component.rerender(
       <BrowserRouter>
         <Header />
@@ -58,11 +56,6 @@ describe('<Header/>', () => {
   })
 
   test('Styling is correct', () => {
-    const { setLoading } = renderHook(() => useFetchStatusStore()).result
-      .current
-    act(() => {
-      setLoading(false)
-    })
     expect(component.getByTestId('home-button').firstChild).toHaveClass(
       'items-center text-2xl font-bold text-blue-600'
     )

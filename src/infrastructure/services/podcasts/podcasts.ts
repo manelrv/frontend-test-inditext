@@ -1,11 +1,11 @@
 import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
 import axios, { CancelToken } from 'axios'
-import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
+import convertMillisecondsToHHMMSS from '../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 import {
   URL_GET_PODCAST_DETAILS,
   URL_GET_PODCASTS
 } from '../../constants/constants'
-import validateJSON from '../../utils/validateJSON'
+import validateJSON from '../../utils/validateJSON/validateJSON'
 
 export const getPodcasts = async ({
   cancelToken
