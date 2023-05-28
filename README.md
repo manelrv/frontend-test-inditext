@@ -91,6 +91,7 @@ Routes are stored in an object in the `src/infrastructure/constants/routes.ts` f
 - `/podcast/:podcastId/chapter/:chapterId`: Episode detail view.
 
 On all views, While the data is being loaded, a spinner is shown on the right side of the header. ![Spinner](./screenshots/spinner.gif)
+
 While dinamic data is being loaded, a loader component is shown. ![Loader](./screenshots/loader.gif)
 
 
