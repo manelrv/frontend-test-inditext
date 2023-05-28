@@ -15,7 +15,6 @@ export const getPodcasts = async ({
   const rawPodcasts = response?.data?.feed?.entry
   if (!rawPodcasts) return null
   return rawPodcasts.map((podcast: any) => {
-    console.log({ podcast: podcast['im:image'][2].label })
     return {
       podcastId: podcast.id.attributes['im:id'],
       name: podcast['im:name'].label,
