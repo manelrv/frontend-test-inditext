@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getPodcastDetailsById, getPodcasts } from './podcasts' // Reemplaza 'yourFile' con el nombre real de tu archivo
+import { getPodcastDetailsById, getPodcasts } from './podcasts'
 import { Podcast, PodcastDetails } from '../../types/types'
 
 jest.mock('axios')
@@ -53,7 +53,6 @@ describe('getPodcasts', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const result = await getPodcasts({ cancelToken: '' })
-    console.log({ result })
     const expected: Podcast[] = [
       {
         podcastId: '1',
@@ -76,7 +75,7 @@ describe('getPodcasts', () => {
 })
 
 describe('getPodcastDetailsById', () => {
-  test('debería devolver null si no hay respuesta', async () => {
+  test('should_return_null_if_no_response', async () => {
     axios.get = jest.fn().mockResolvedValueOnce(null)
 
     const result = await getPodcastDetailsById({
@@ -89,7 +88,7 @@ describe('getPodcastDetailsById', () => {
     expect(result).toBeNull()
   })
 
-  it('debería devolver los detalles del podcast correctamente', async () => {
+  it('should_return_podcast_details_correctly', async () => {
     const mockResponse = {
       data: {
         contents:
@@ -127,8 +126,6 @@ describe('getPodcastDetailsById', () => {
         }
       ]
     }
-
-    // console.log({ result: result?.episodes, expected: expected?.episodes })
     expect(result).toEqual(expected)
   })
 })
