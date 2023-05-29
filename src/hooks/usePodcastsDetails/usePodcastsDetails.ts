@@ -21,6 +21,12 @@ const usePodcastsDetails = (podcastId?: string) => {
     useState<PodcastDetails>({} as PodcastDetails)
   const { setLoading } = useFetchStatusStore()
 
+  /* The `useEffect` hook is used to fetch and store podcast details when the `podcastId` prop changes. It first checks if
+  the podcast details are already stored in the `podcastsDetails` array, and if they are, it checks if they are still
+  current based on a specified delay. If the details are current, it sets the current podcast details to the stored
+  details. If the details are not current, it fetches the details using the `getPodcastDetailsById` function and sets
+  the current podcast details to the fetched details. It also updates the `podcastsDetails` array with the new details.
+  The `useEffect` hook returns a cleanup function that cancels the request and sets the loading state to false. */
   useEffect(() => {
     const fetchPodcastDetails = async ({
       prevPodcastsDetails
@@ -69,6 +75,14 @@ const usePodcastsDetails = (podcastId?: string) => {
     }
   }, [podcastId])
 
+  /**
+   * This function retrieves a specific episode by its ID within a given podcast.
+   * @param  - The function `getEpisodeByPodcastAndEpisodeId` takes in an object with two properties: `podcastId` and
+   * `episodeId`. Both properties are of type `string`. The function uses these parameters to find a specific episode
+   * within a podcast.
+   * @returns The function `getEpisodeByPodcastAndEpisodeId` returns the episode object that matches the given `podcastId`
+   * and `episodeId`. If there is no matching podcast or episode, it returns `undefined`.
+   */
   const getEpisodeByPodcastAndEpisodeId = ({
     podcastId,
     episodeId

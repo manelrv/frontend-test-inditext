@@ -14,6 +14,9 @@ import { getPodcasts } from '../../infrastructure/services/podcasts/getPodcasts/
 const usePodcasts = () => {
   const { podcasts, setPodcasts, timestamp, setTimestamp } = usePodcastsStore()
   const { setLoading } = useFetchStatusStore()
+
+  /* This `useEffect` hook is responsible for fetching the list of podcasts and updating the state of the `podcasts` array
+  in the `usePodcastsStore` store. It also sets a timestamp to keep track of when the podcasts were last fetched. */
   useEffect(() => {
     if (
       podcasts.length > 0 &&
@@ -42,6 +45,14 @@ const usePodcasts = () => {
     }
   }, [])
 
+  /**
+   * This function returns a podcast object from an array of podcasts based on a given ID.
+   * @param {string} id - The `id` parameter is a string representing the unique identifier of a podcast. The function
+   * `getPodcastById` takes this `id` as input and returns the podcast object from an array of podcasts that matches the
+   * given `id`.
+   * @returns The function `getPodcastById` is returning a single podcast object from an array of podcasts, where the
+   * `podcastId` property of the podcast object matches the `id` parameter passed to the function.
+   */
   const getPodcastById = (id: string) => {
     return podcasts.find((podcast) => podcast.podcastId === id)
   }
