@@ -29,17 +29,24 @@ const useFilter = () :UseFilterResult => {
     setFilter(value)
   }
 
-  /* This `useEffect` hook is responsible for filtering the list of podcasts based on the user input (stored in the
-  `filter` state) and updating the `filteredData` state with the filtered list. It runs whenever the `filter` or
-  `podcasts` state changes. */
+  /* This `useEffect` hook is responsible for filtering the `podcasts` data based on the `filter` state whenever either the
+  `filter` or `podcasts` state changes. It first checks if the `podcasts` array has any length, and if not, it returns
+  early. Then it converts the `filter` state to lowercase and splits it into an array of keywords. It filters the
+  `podcasts` array based on whether every keyword is included in either the `name` or `artist` property of the podcast
+  object. Finally, it sets the `filteredData` state to the new filtered array. */
   useEffect(() => {
     if (!podcasts?.length) return
     const lowerCaseFilter = filter.toLowerCase()
-    const newFilteredData = podcasts.filter(
-      (podcast) =>
-        podcast.name.toLowerCase().includes(lowerCaseFilter) ||
-        podcast.artist.toLowerCase().includes(lowerCaseFilter)
-    )
+    const keywords = lowerCaseFilter.split(' ').filter(keyword => keyword.length > 0);
+    const newFilteredData = podcasts.filter(podcast => {
+      const podcastName = podcast.name.toLowerCase();
+      const podcastArtist = podcast.artist.toLowerCase();
+
+      return keywords.every(keyword =>
+          podcastName.includes(keyword) || podcastArtist.includes(keyword)
+      );
+    });
+
     setFilteredData(newFilteredData)
   }, [filter, podcasts])
 
