@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import usePodcastsDetailsStore from '../../infrastructure/stores/podcastsDetailsStore'
-import { PodcastDetails } from '../../infrastructure/types/types'
+import {PodcastDetails, UsePodcastsDetailsResult} from '../../infrastructure/types/types'
 import checkElapsedTime from '../../infrastructure/utils/checkElapsedTime/checkElapsedTime'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import axios from 'axios'
@@ -15,7 +15,7 @@ import { getPodcastDetailsById } from '../../infrastructure/services/podcasts/ge
  * within that podcast.
  * @returns The `usePodcastsDetails` custom hook is returning an object with the following properties:
  */
-const usePodcastsDetails = (podcastId?: string) => {
+const usePodcastsDetails = (podcastId?: string): UsePodcastsDetailsResult => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
   const [currentPodcastDetails, setCurrentPodcastDetails] =
     useState<PodcastDetails>({} as PodcastDetails)

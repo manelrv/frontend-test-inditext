@@ -1,7 +1,8 @@
-import { ChangeEvent } from 'react'
+import {ChangeEvent, ReactElement} from 'react'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 type InputSearchProps = {
   filter: string
+  // eslint-disable-next-line no-unused-vars
   handleFilter: (e: ChangeEvent<HTMLInputElement>) => void
   podcastsCount: number
 }
@@ -10,7 +11,7 @@ const InputSearch = ({
   filter,
   handleFilter,
   podcastsCount
-}: InputSearchProps) => {
+}: InputSearchProps): ReactElement => {
   const { loading } = useFetchStatusStore()
   return (
     <section

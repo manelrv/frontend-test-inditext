@@ -14,7 +14,7 @@ export const getPodcasts = async ({
   cancelToken
 }: {
   cancelToken?: CancelToken
-}) => {
+}):Promise<null | Podcast[]> => {
   const response = await axios
     .get(URL_GET_PODCASTS, { cancelToken })
     .catch((error) => {

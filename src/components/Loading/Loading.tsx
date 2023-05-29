@@ -1,4 +1,6 @@
-const Loading = ({ small }: { small?: boolean }) => {
+import {ReactElement} from "react";
+
+const Loading = ({ small }: { small?: boolean }): ReactElement => {
   return (
     <div
       className={`flex ${

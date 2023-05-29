@@ -1,12 +1,13 @@
 import { PodcastEpisodeRow } from '../../../../infrastructure/types/types'
 import convertDate from '../../../../infrastructure/utils/convertDate/convertDate'
 import { useNavigate } from 'react-router-dom'
+import {ReactElement} from "react";
 interface EpisodeRowProps {
   podcastId: string
   episode: PodcastEpisodeRow
   index: number
 }
-const EpisodeRow = ({ podcastId, episode, index }: EpisodeRowProps) => {
+const EpisodeRow = ({ podcastId, episode, index }: EpisodeRowProps): ReactElement => {
   const navigate = useNavigate()
   const { title, date, duration, episodeId } = episode
   const handleClick = () => {

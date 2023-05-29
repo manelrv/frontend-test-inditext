@@ -3,7 +3,7 @@
  * @param {number} milliseconds - The number of milliseconds that you want to convert to the format HH:MM:SS.
  * @returns a formatted string representing the input time in hours, minutes, and seconds (HH:MM:SS) format.
  */
-export default function convertMillisecondsToHHMMSS(milliseconds: number) {
+export default function convertMillisecondsToHHMMSS(milliseconds: number): string {
   if (milliseconds < 0 || milliseconds === Infinity) {
     return '00:00'
   }
