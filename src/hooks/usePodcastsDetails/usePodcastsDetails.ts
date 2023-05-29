@@ -7,14 +7,20 @@ import axios from 'axios'
 import { DELAY_IN_HOURS_REFRESH_PODCAST_DETAILS } from '../../infrastructure/constants/constants'
 import { getPodcastDetailsById } from '../../infrastructure/services/podcasts/getPodcastDetailsById/getPodcastDetailsById'
 
+/**
+ * This is a custom hook in TypeScript that fetches and stores podcast details and episodes, and provides a function to
+ * retrieve a specific episode by its ID.
+ * @param {string} [podcastId] - The `podcastId` parameter is an optional string that represents the unique identifier of a
+ * podcast. It is used to fetch and store the details of a specific podcast, as well as to retrieve a specific episode
+ * within that podcast.
+ * @returns The `usePodcastsDetails` custom hook is returning an object with the following properties:
+ */
 const usePodcastsDetails = (podcastId?: string) => {
   const { podcastsDetails, setPodcastsDetails } = usePodcastsDetailsStore()
   const [currentPodcastDetails, setCurrentPodcastDetails] =
     useState<PodcastDetails>({} as PodcastDetails)
   const { setLoading } = useFetchStatusStore()
 
-  /* This is a custom hook called `usePodcastsDetails` that takes in an optional `podcastId` parameter. It uses the
-  `useEffect` hook to fetch podcast details by calling the `getPodcastDetailsById` function from a service file. */
   useEffect(() => {
     const fetchPodcastDetails = async ({
       prevPodcastsDetails

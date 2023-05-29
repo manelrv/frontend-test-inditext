@@ -2,6 +2,14 @@ import axios, { CancelToken } from 'axios'
 import { URL_GET_PODCASTS } from '../../../constants/constants'
 import { Podcast } from '../../../types/types'
 
+/**
+ * This function retrieves a list of podcasts from a specified URL and returns an array of Podcast objects.
+ * @param  - The function `getPodcasts` takes in an object with an optional `cancelToken` property, which is of type
+ * `CancelToken`. The `cancelToken` is used to cancel the request if needed. The function returns an array of `Podcast`
+ * objects, where each object has the properties
+ * @returns The function `getPodcasts` returns an array of `Podcast` objects. If there is an error or if the response does
+ * not contain any podcasts, it returns `null`.
+ */
 export const getPodcasts = async ({
   cancelToken
 }: {

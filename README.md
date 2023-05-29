@@ -1,14 +1,30 @@
 # Frontend test. Podcaster app.
 
+## Table of Contents
+- [Summary](#summary)
+- [Installation and Application Modes](#installation-and-application-modes)
+- [Tests](#tests)
+  - [Unit tests](#unit-tests)
+  - [End-to-End tests](#end-to-end-tests)
+- [Considered Restrictions](#considered-restrictions)
+- [Used Technologies](#used-technologies)
+- [Solution Approach](#solution-approach)
+- [Folder Structure](#folder-structure)
+- [Routes and Views](#routes-and-views)
+  - [Main View](#main-view)
+  - [Podcast Detail View](#podcast-detail-view)
+  - [Episode Detail View](#episode-detail-view)
+
+## Summary
 This project is a technical test for the Frontend Developer position.
-A mini-application has been created to listen to music podcas
+A mini-application has been created to listen to music podcasts.
 
 The application has three views:
 - The main view, where the podcasts are displayed.
 - The podcast detail view, where the episodes of a podcast are shown.
 - The episode detail view, where the audio player is displayed.
 
-The application is a SPA (Single Page Application) and it has been created with [Vite](https://vitejs.dev/) and its plugin for React. Vite was chosen because it is a very fast and lightweight bundler, and it has a development server with hot reloading that allows for a comfortable development experience.
+The application is an SPA (Single Page Application) and it has been created with [Vite](https://vitejs.dev/) and its plugin for React. Vite was chosen because it is a very fast and lightweight bundler, and it has a development server with hot reloading that allows for a comfortable development experience.
 
 ## Installation and Application Modes
 
@@ -33,26 +49,26 @@ To run the end-to-end tests, execute `npm run cypress`. A total of 2 tests are e
 - Error handling has been done in a very basic way, specific errors are not shown to the user, and they are displayed in the browser console.
 
 ## Used Technologies
-- React
-- React Router Dom
-- React Testing Library
-- Cypress
-- Zustand
-- Axios
-- TypeScript
-- Tailwind CSS
-- Vite
-- ESLint
-- Prettier
-- Jest
-- React-html-parser
-- date-fns
+- [React](https://react.dev/learn)
+- [Vite](https://vitejs.dev/guide)
+- [TypeScript](https://www.typescriptlang.org/docs)
+- [ESLint](https://eslint.org/docs/user-guide/getting-started)
+- [Prettier](https://prettier.io/docs/en/index.html)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [React Router Dom](https://reactrouter.com/)
+- [Zustand](https://tailwindcss.com/docs)
+- [Axios](https://axios-http.com/docs/intro)
+- [React-html-parser](https://www.npmjs.com/package/react-html-parser)
+- [date-fns](https://date-fns.org/docs/Getting-Started)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Jest](https://jestjs.io/docs/getting-started)
+- [Cypress](https://docs.cypress.io/)
 
 
 ## Solution Approach
 - A SPA application has been created using React and React Router Dom.
 - Tailwind CSS has been used for styling.
-- Zustand has been used for state management.
+- Zustand has been used for state management and data persistence.
 - Axios has been used for HTTP requests.
 - Cypress has been used for E2E tests.
 - React Testing Library and Jest have been used for unit tests.
@@ -88,7 +104,7 @@ There are some components like EpisodeGrid that have child components saved in a
 Routes are stored in an object in the `src/infrastructure/constants/routes.ts` file. This way, if a route needs to be changed, it only needs to be updated in that file. Similarly, if the application grows and more routes are added, they need to be added to that file. The routes are:
 - `/`: Main view.
 - `/podcast/:podcastId`: Podcast detail view.
-- `/podcast/:podcastId/chapter/:chapterId`: Episode detail view.
+- `/podcast/:podcastId/episode/:epidodeId`: Episode detail view.
 
 On all views, While the data is being loaded, a spinner is shown on the right side of the header. ![Spinner](./screenshots/spinner.gif)
 
@@ -97,6 +113,7 @@ While dinamic data is being loaded, a loader component is shown. ![Loader](./scr
 
 ### Main View
 ![Main View](./screenshots/main-view.png)
+
 In this view, the top 100 most popular podcasts from iTunes are displayed. They are shown in the form of cards, and each card includes an image, the podcast title, and the author. Clicking on a card navigates to the detail view of that podcast.
 - The result of the API call is stored in localStorage, so if the page is refreshed, the data saved in localStorage is displayed until 24 hours have passed since the last API call.
 - The user can search for podcasts by title or author. The search is displayed instantly, so there is no need to press any button to perform the search.

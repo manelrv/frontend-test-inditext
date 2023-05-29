@@ -4,6 +4,12 @@ import validateJSON from '../../../utils/validateJSON/validateJSON'
 import { PodcastDetails, PodcastEpisode } from '../../../types/types'
 import convertMillisecondsToHHMMSS from '../../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 
+/**
+ * This function retrieves podcast details by ID from an API and returns the data in a specific format.
+ * @param  - - `podcastId`: a string representing the ID of the podcast for which details are being fetched.
+ * @returns a Promise that resolves to a PodcastDetails object, which contains the podcastId, timestamp, and an array of
+ * PodcastEpisode objects. If there is an error or the response is invalid, the function returns null.
+ */
 export const getPodcastDetailsById = async ({
   podcastId,
   cancelToken
