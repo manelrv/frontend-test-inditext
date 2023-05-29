@@ -7,7 +7,8 @@ const Header = () => {
     <header className={'header flex justify-between border-b pb-4'}>
       <button
         onClick={() => navigate('/')}
-        disabled={window.location.pathname === '/'}
+        disabled={location.pathname === '/'}
+        data-testid={'home-button'}
       >
         <p className={'items-center text-2xl font-bold text-blue-600'}>
           Podcaster
@@ -16,8 +17,9 @@ const Header = () => {
       {loading && (
         <div
           className={
-            ' flex h-7 w-7 animate-spin items-center justify-center rounded-full bg-gradient-to-r from-violet-800 to-blue-400'
+            'flex h-7 w-7 animate-spin items-center justify-center rounded-full bg-gradient-to-r from-violet-800 to-blue-400'
           }
+          data-testid={'loading-signal'}
         >
           <div
             className={' h-3 w-3 animate-pulse rounded-full bg-blue-900'}

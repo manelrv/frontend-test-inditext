@@ -11,14 +11,21 @@ const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
         'episode-details flex w-full flex-col gap-4 border border-gray-50 p-4 shadow-lg'
       }
     >
-      <p className={'text-3xl font-bold'}>{episode?.title ?? 'No title'}</p>
+      <p className={'text-3xl font-bold'}>
+        {episode?.title ? episode?.title : 'No title'}
+      </p>
       <p>
         {episode?.description
           ? ReactHtmlParser(episode?.description)
           : 'No description supplied'}
       </p>
       {episode?.streamUrl ? (
-        <audio src={episode?.streamUrl} controls={true} className={'w-full'} />
+        <audio
+          src={episode?.streamUrl}
+          controls={true}
+          className={'w-full'}
+          data-cy={'podcast-player'}
+        />
       ) : (
         <p>No audio available</p>
       )}

@@ -1,5 +1,5 @@
 import { PodcastEpisodeRow } from '../../../../infrastructure/types/types'
-import { convertDate } from '../../../../infrastructure/utils/convertDate'
+import convertDate from '../../../../infrastructure/utils/convertDate/convertDate'
 import { useNavigate } from 'react-router-dom'
 interface EpisodeRowProps {
   podcastId: string
@@ -17,6 +17,7 @@ const EpisodeRow = ({ podcastId, episode, index }: EpisodeRowProps) => {
       className={`episode-row grid grid-cols-6 gap-4 p-2 text-lg ${
         index % 2 === 0 ? 'border-y bg-zinc-50' : ' bg-white'
       }`}
+      data-testid={'episode-row'}
     >
       <p
         className={

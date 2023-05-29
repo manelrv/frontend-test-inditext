@@ -32,6 +32,7 @@ const InputSearch = ({
         onChange={handleFilter}
         autoFocus
         disabled={loading}
+        placeholder={'Discraceland, Andrew, etc...'}
       />
     </section>
   )

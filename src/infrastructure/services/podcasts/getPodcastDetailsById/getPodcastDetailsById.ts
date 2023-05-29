@@ -1,35 +1,15 @@
-import { Podcast, PodcastDetails, PodcastEpisode } from '../../types/types'
 import axios, { CancelToken } from 'axios'
-import { convertMillisecondsToHHMMSS } from '../../utils/convertMillisecondsToHHMMSS'
-import {
-  URL_GET_PODCAST_DETAILS,
-  URL_GET_PODCASTS
-} from '../../constants/constants'
-import validateJSON from '../../utils/validateJSON'
+import { URL_GET_PODCAST_DETAILS } from '../../../constants/constants'
+import validateJSON from '../../../utils/validateJSON/validateJSON'
+import { PodcastDetails, PodcastEpisode } from '../../../types/types'
+import convertMillisecondsToHHMMSS from '../../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 
-export const getPodcasts = async ({
-  cancelToken
-}: {
-  cancelToken: CancelToken
-}) => {
-  const response = await axios
-    .get(URL_GET_PODCASTS, { cancelToken })
-    .catch((error) => {
-      console.error({ message: error.message, stack: error.stack })
-    })
-  const rawPodcasts = response?.data?.feed?.entry
-  if (!rawPodcasts) return null
-  return rawPodcasts.map((podcast: any) => {
-    return {
-      podcastId: podcast.id.attributes['im:id'],
-      name: podcast['im:name'].label,
-      image: podcast['im:image'][2].label,
-      artist: podcast['im:artist'].label,
-      description: podcast.summary.label
-    } as Podcast
-  })
-}
-
+/**
+ * This function retrieves podcast details by ID from an API and returns the data in a specific format.
+ * @param  - - `podcastId`: a string representing the ID of the podcast for which details are being fetched.
+ * @returns a Promise that resolves to a PodcastDetails object, which contains the podcastId, timestamp, and an array of
+ * PodcastEpisode objects. If there is an error or the response is invalid, the function returns null.
+ */
 export const getPodcastDetailsById = async ({
   podcastId,
   cancelToken
