@@ -24,7 +24,8 @@ const useFilter = () :UseFilterResult => {
    * @param e - The parameter `e` is of type `ChangeEvent<HTMLInputElement>`. It represents the event object that is
    * triggered when the value of an input element of type `input` or `textarea` is changed.
    */
-  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFilter = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (!e.target || e.target.value === ' ') return
     const { value } = e.target
     setFilter(value)
   }
