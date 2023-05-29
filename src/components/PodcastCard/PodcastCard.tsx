@@ -1,5 +1,5 @@
 import usePodcasts from '../../hooks/usePodcasts'
-import { useMemo } from 'react'
+import {ReactElement, useMemo} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface PodcastCardProps {
@@ -9,7 +9,7 @@ interface PodcastCardProps {
 const PodcastCard = ({
   podcastId,
   allowNavigateToListOfEpisodes: allowNavigateToListOfEpisodes = false
-}: PodcastCardProps) => {
+}: PodcastCardProps): ReactElement => {
   const { getPodcastById } = usePodcasts()
   const navigate = useNavigate()
   const handleClick = () => {
@@ -28,7 +28,7 @@ const PodcastCard = ({
       <img
         src={podcast?.image}
         loading={'lazy'}
-        alt={podcast?.name}
+        alt={`${podcast?.name?.split(' ')?.join('_')}_${podcastId}`}
         className={`px-10 ${allowNavigateToListOfEpisodes && 'cursor-pointer'}`}
         onClick={handleClick}
       />

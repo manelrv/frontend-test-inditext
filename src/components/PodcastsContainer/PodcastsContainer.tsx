@@ -2,8 +2,9 @@ import { Podcast } from '../../infrastructure/types/types'
 import PodcastSummary from '../PodcastSummary/PodcastSummary'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import Loading from '../Loading'
+import {ReactElement} from "react";
 
-const PodcastsContainer = ({ podcasts }: { podcasts: Podcast[] }) => {
+const PodcastsContainer = ({ podcasts }: { podcasts: Podcast[] }): ReactElement => {
   const { loading } = useFetchStatusStore()
   if (loading) {
     return <Loading />

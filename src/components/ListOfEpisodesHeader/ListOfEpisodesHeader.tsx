@@ -1,12 +1,13 @@
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import Loading from '../Loading'
+import {ReactElement} from "react";
 
 interface ListOfEpisodesHeaderProps {
   numberOfEpisodes: number
 }
 const ListOfEpisodesHeader = ({
   numberOfEpisodes
-}: ListOfEpisodesHeaderProps) => {
+}: ListOfEpisodesHeaderProps): ReactElement => {
   const { loading } = useFetchStatusStore()
   if (loading) {
     return <Loading small={true} />

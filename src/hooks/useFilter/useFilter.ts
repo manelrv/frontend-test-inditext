@@ -1,4 +1,4 @@
-import { Podcast } from '../../infrastructure/types/types'
+import {Podcast, UseFilterResult} from '../../infrastructure/types/types'
 import { useState, useEffect, ChangeEvent } from 'react'
 import usePodcasts from '../usePodcasts'
 
@@ -7,7 +7,7 @@ import usePodcasts from '../usePodcasts'
  * along with functions to handle the filter and reset it.
  * @returns The `useFilter` custom hook is returning an object with the following properties:
  */
-const useFilter = () => {
+const useFilter = () :UseFilterResult => {
   const [filter, setFilter] = useState<string>('')
   const [filteredData, setFilteredData] = useState<Podcast[]>([])
   const { podcasts } = usePodcasts()
@@ -33,7 +33,7 @@ const useFilter = () => {
   `filter` state) and updating the `filteredData` state with the filtered list. It runs whenever the `filter` or
   `podcasts` state changes. */
   useEffect(() => {
-    if (podcasts?.length === 0) return
+    if (!podcasts?.length) return
     const lowerCaseFilter = filter.toLowerCase()
     const newFilteredData = podcasts.filter(
       (podcast) =>

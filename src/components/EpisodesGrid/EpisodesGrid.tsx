@@ -3,13 +3,14 @@ import GridHeader from './components/GridHeader'
 import EpisodeRow from './components/EpisodeRow'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
 import Loading from '../Loading'
+import {ReactElement} from "react";
 
 interface EpisodesGridProps {
   episodes: PodcastEpisodeRow[]
   podcastId: string
 }
 
-const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps) => {
+const EpisodesGrid = ({ episodes, podcastId }: EpisodesGridProps): ReactElement => {
   const { loading } = useFetchStatusStore()
   if (loading) {
     return <Loading />

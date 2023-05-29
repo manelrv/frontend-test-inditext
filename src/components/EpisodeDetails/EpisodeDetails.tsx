@@ -1,10 +1,11 @@
 import { PodcastEpisode } from '../../infrastructure/types/types'
 import ReactHtmlParser from 'react-html-parser'
+import {ReactElement} from "react";
 
 interface EpisodeDetailsProps {
   episode: PodcastEpisode
 }
-const EpisodeDetails = ({ episode }: EpisodeDetailsProps) => {
+const EpisodeDetails = ({ episode }: EpisodeDetailsProps): ReactElement => {
   return (
     <div
       className={

@@ -1,9 +1,10 @@
 import { PodcastSummaryType } from '../../infrastructure/types/types'
 import { useNavigate } from 'react-router-dom'
+import {ReactElement} from "react";
 export type PodcastSummaryProps = {
   podcast: PodcastSummaryType
 }
-const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {
+const PodcastSummary = ({ podcast }: PodcastSummaryProps): ReactElement => {
   const { name, artist, image, podcastId } = podcast
   const navigate = useNavigate()
   return (
@@ -16,7 +17,7 @@ const PodcastSummary = ({ podcast }: PodcastSummaryProps) => {
       <img
         src={image}
         loading={'lazy'}
-        alt={name}
+        alt={`${name?.split(' ')?.join('_')}_${podcastId}`}
         className={
           'absolute -top-16 h-32 w-32 rounded-full border border-zinc-200'
         }

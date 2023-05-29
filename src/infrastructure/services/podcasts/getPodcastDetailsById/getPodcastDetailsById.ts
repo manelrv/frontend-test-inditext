@@ -1,7 +1,7 @@
-import axios, { CancelToken } from 'axios'
-import { URL_GET_PODCAST_DETAILS } from '../../../constants/constants'
+import axios, {CancelToken} from 'axios'
+import {URL_GET_PODCAST_DETAILS} from '../../../constants/constants'
 import validateJSON from '../../../utils/validateJSON/validateJSON'
-import { PodcastDetails, PodcastEpisode } from '../../../types/types'
+import {PodcastDetails, PodcastEpisode} from '../../../types/types'
 import convertMillisecondsToHHMMSS from '../../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 
 /**
@@ -16,7 +16,7 @@ export const getPodcastDetailsById = async ({
 }: {
   podcastId: string
   cancelToken: CancelToken
-}) => {
+}): Promise<null | PodcastDetails> => {
   const response = await axios
     .get(
       `https://api.allorigins.win/get?url=${encodeURIComponent(
@@ -42,10 +42,9 @@ export const getPodcastDetailsById = async ({
     }
   })
   episodes.shift()
-  const podcastDetailsData: PodcastDetails = {
+  return {
     podcastId,
     timestamp: Date.now(),
     episodes
   }
-  return podcastDetailsData
 }
