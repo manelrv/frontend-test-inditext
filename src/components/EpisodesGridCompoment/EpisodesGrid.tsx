@@ -1,8 +1,8 @@
 import { PodcastEpisodeRow } from '../../infrastructure/types/types'
-import GridHeader from './components/GridHeader'
-import EpisodeRow from './components/EpisodeRow'
+import GridHeader from './components/GridHeaderComponent/GridHeader'
+import EpisodeRow from './components/EpisodeRowComponent/EpisodeRow'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
-import Loading from '../Loading'
+import Loading from '../LoadingComponent/Loading'
 import {ReactElement} from "react";
 
 interface EpisodesGridProps {

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import usePodcastsDetails from '../../hooks/usePodcastsDetails'
-import PodcastCard from '../../components/PodcastCard'
+import PodcastCard from '../../components/PodcastCardComponent/PodcastCard'
 import { PodcastEpisode } from '../../infrastructure/types/types'
-import EpisodeDetails from '../../components/EpisodeDetails'
+import EpisodeDetails from '../../components/EpisodeDetailsComponent/EpisodeDetails'
 
-const EpisodePage = () => {
+const Episode = () => {
   const { podcastId, episodeId } = useParams()
   const { getEpisodeByPodcastAndEpisodeId } = usePodcastsDetails()
   const episode: PodcastEpisode | undefined = getEpisodeByPodcastAndEpisodeId({
@@ -26,4 +26,4 @@ const EpisodePage = () => {
   )
 }
 
-export default EpisodePage
+export default Episode

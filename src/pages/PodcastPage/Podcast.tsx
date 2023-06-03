@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
-import PodcastCard from '../../components/PodcastCard'
+import PodcastCard from '../../components/PodcastCardComponent/PodcastCard'
 import usePodcastsDetails from '../../hooks/usePodcastsDetails'
-import ListOfEpisodesHeader from '../../components/ListOfEpisodesHeader'
-import EpisodesGrid from '../../components/EpisodesGrid'
+import ListOfEpisodesHeader from '../../components/ListOfEpisodesHeaderComponent/ListOfEpisodesHeader'
+import EpisodesGrid from '../../components/EpisodesGridCompoment/EpisodesGrid'
 
-const PodcastPage = () => {
+const Podcast = () => {
   const { podcastId } = useParams()
   const { currentPodcastDetails, numberOfEpisodes } = usePodcastsDetails(
     podcastId ?? ''
@@ -26,4 +26,4 @@ const PodcastPage = () => {
   )
 }
 
-export default PodcastPage
+export default Podcast

@@ -6,7 +6,7 @@ import {
   renderHook,
   RenderResult
 } from '@testing-library/react'
-import EpisodesGrid from './index'
+import EpisodesGrid from './EpisodesGrid'
 import { PodcastEpisodeRow } from '../../infrastructure/types/types'
 import { BrowserRouter } from 'react-router-dom'
 import convertDate from '../../infrastructure/utils/convertDate/convertDate'

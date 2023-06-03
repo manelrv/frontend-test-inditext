@@ -1,5 +1,5 @@
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
-import Loading from '../Loading'
+import Loading from '../LoadingComponent/Loading'
 import {ReactElement} from "react";
 
 interface ListOfEpisodesHeaderProps {

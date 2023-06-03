@@ -1,8 +1,8 @@
 import useFilter from '../../hooks/useFilter'
-import PodcastsContainer from '../../components/PodcastsContainer/PodcastsContainer'
-import InputSearch from '../../components/InputSearch'
+import PodcastsContainer from '../../components/PodcastsContainerComponent/PodcastsContainer'
+import InputSearch from '../../components/InputSearchComponent/InputSearch'
 
-const HomePage = () => {
+const Home = () => {
   const { podcasts, handleFilter, filter } = useFilter()
   return (
     <div className={'home-page flex flex-col gap-10'}>
@@ -16,4 +16,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default Home
