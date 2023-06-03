@@ -1,21 +1,21 @@
 import { RouteObject } from 'react-router-dom'
-import HomePage from '../../Pages/HomePage'
-import PodcastPage from '../../Pages/PodcastPage'
-import EpisodePage from '../../Pages/EpisodePage'
+import Home from '../../pages/HomePage/Home'
+import Podcast from '../../pages/PodcastPage/Podcast'
+import Episode from '../../pages/EpisodePage/Episode'
 
 // Define las rutas como objetos de tipo RouteObject
 const ROUTES: RouteObject[] = [
   {
     path: '/',
-    element: <HomePage />
+    element: <Home />
   },
   {
     path: '/podcast/:podcastId',
-    element: <PodcastPage />
+    element: <Podcast />
   },
   {
     path: '/podcast/:podcastId/episode/:episodeId',
-    element: <EpisodePage />
+    element: <Episode />
   }
 ]
 

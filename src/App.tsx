@@ -1,8 +1,8 @@
 import './App.css'
 import { Route, Routes, BrowserRouter, RouteObject } from 'react-router-dom'
 import ROUTES from './infrastructure/constants/routes'
-import Header from './components/Header'
-import ScrollToTop from './infrastructure/helpers/ScrollToTop'
+import Header from './components/HeaderComponent/Header'
+import ScrollToTop from './infrastructure/helpers/ScrollToTopComponent/ScrollToTop'
 
 function App() {
   return (
