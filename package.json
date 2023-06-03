@@ -8,8 +8,10 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest --watchAll --silent",
-    "cypress": "cypress open"
+    "test": "jest --silent",
+    "test:watch": "jest --watchAll --silent",
+    "cypress": "vite --port 8481 & cypress run --browser chrome && kill $(pgrep -f \"vite\")",
+    "cypress:open": "vite --port 8481 & cypress open --browser chrome && kill $(pgrep -f \"vite\")"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
