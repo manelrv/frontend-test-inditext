@@ -14,12 +14,20 @@ export const getPodcasts = async ({
   cancelToken
 }: {
   cancelToken?: CancelToken
-}):Promise<null | Podcast[]> => {
+}): Promise<null | Podcast[]> => {
   const response = await axios
     .get(URL_GET_PODCASTS, { cancelToken })
     .catch((error) => {
       console.error({ message: error.message, stack: error.stack })
     })
+  console.log({ response })
+  if (response?.status !== 200) {
+    console.error({
+      message: 'Error retrieving podcasts',
+      response
+    })
+    return null
+  }
   const rawPodcasts = response?.data?.feed?.entry
   if (!rawPodcasts) return null
   return rawPodcasts.map((podcast: any) => {
