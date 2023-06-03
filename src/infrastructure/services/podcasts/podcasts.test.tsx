@@ -19,6 +19,7 @@ describe('getPodcasts', () => {
 
   test('should_return_a_valid_podcasts_list', async () => {
     const mockResponse = {
+      status: 200,
       data: {
         feed: {
           entry: [
@@ -91,6 +92,7 @@ describe('getPodcastDetailsById', () => {
 
   it('should_return_podcast_details_correctly', async () => {
     const mockResponse = {
+      status: 200,
       data: {
         contents:
           '{"resultCount":1,"results": [{"trackId":1, "releaseDate":"2023-01-01T04:00:00Z"}, {"trackTimeMillis":600000, "collectionId":1, "description":"Description 1", "releaseDate":"2023-01-01", "trackId":1, "trackName":"Episode 1", "previewUrl":"previewUrl1"}]}',
