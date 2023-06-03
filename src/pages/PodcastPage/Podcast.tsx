@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import PodcastCard from '../../components/PodcastCardComponent/PodcastCard'
-import usePodcastsDetails from '../../hooks/usePodcastsDetails'
+import usePodcastsDetails from '../../hooks/usePodcastsDetailsHook/usePodcastsDetails'
 import ListOfEpisodesHeader from '../../components/ListOfEpisodesHeaderComponent/ListOfEpisodesHeader'
 import EpisodesGrid from '../../components/EpisodesGridCompoment/EpisodesGrid'
 

@@ -2,14 +2,14 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Podcast } from '../../types/types'
 
-interface PodcastsStore {
+interface Podcasts {
   podcasts: Podcast[]
   timestamp: number
   setPodcasts: (podcasts: Podcast[]) => void
   setTimestamp: (timestamp: number) => void
 }
 
-const usePodcastsStore = create<PodcastsStore>()(
+const usePodcastsStore = create<Podcasts>()(
   persist(
     (set) => ({
       podcasts: [] as Podcast[],

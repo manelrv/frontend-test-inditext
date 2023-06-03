@@ -1,7 +1,7 @@
 import { PodcastEpisodeRow } from '../../infrastructure/types/types'
 import GridHeader from './components/GridHeaderComponent/GridHeader'
 import EpisodeRow from './components/EpisodeRowComponent/EpisodeRow'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 import Loading from '../LoadingComponent/Loading'
 import {ReactElement} from "react";
 

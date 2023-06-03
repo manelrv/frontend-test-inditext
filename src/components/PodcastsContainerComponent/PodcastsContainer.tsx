@@ -1,6 +1,6 @@
 import { Podcast } from '../../infrastructure/types/types'
-import PodcastSummary from '../PodcastSummary/PodcastSummary'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import PodcastSummary from '../PodcastSummaryComponent/PodcastSummary'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 import Loading from '../LoadingComponent/Loading'
 import {ReactElement} from "react";
 

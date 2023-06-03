@@ -3,7 +3,7 @@ import { render, renderHook, RenderResult, act } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { BrowserRouter } from 'react-router-dom'
 
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 
 describe('<Header/>', () => {
   let component: RenderResult

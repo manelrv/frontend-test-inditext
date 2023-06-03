@@ -1,6 +1,6 @@
 import {Podcast, UseFilterResult} from '../../infrastructure/types/types'
 import { useState, useEffect, ChangeEvent } from 'react'
-import usePodcasts from '../usePodcasts'
+import usePodcasts from '../usePodcastsHook/usePodcasts'
 
 /**
  * This is a custom hook in TypeScript that filters a list of podcasts based on user input and returns the filtered list

@@ -10,7 +10,7 @@ import EpisodesGrid from './EpisodesGrid'
 import { PodcastEpisodeRow } from '../../infrastructure/types/types'
 import { BrowserRouter } from 'react-router-dom'
 import convertDate from '../../infrastructure/utils/convertDate/convertDate'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 
 describe('EpisodesGrid', () => {
   const podcastId = '123'

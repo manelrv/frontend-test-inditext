@@ -1,4 +1,4 @@
-import usePodcasts from '../../hooks/usePodcasts'
+import usePodcasts from '../../hooks/usePodcastsHook/usePodcasts'
 import {ReactElement, useMemo} from 'react'
 import { useNavigate } from 'react-router-dom'
 

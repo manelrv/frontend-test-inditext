@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
 import usePodcasts from './usePodcasts'
 import { act, renderHook } from '@testing-library/react'
-import usePodcastsStore from '../../infrastructure/stores/podcastsStore'
+import usePodcastsStore from '../../infrastructure/stores/podcastsStore/podcasts'
 import { Podcast } from '../../infrastructure/types/types'
 describe('usePodcasts', () => {
   const originalState = usePodcastsStore.getState()

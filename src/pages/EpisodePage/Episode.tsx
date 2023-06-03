@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import usePodcastsDetails from '../../hooks/usePodcastsDetails'
+import usePodcastsDetails from '../../hooks/usePodcastsDetailsHook/usePodcastsDetails'
 import PodcastCard from '../../components/PodcastCardComponent/PodcastCard'
 import { PodcastEpisode } from '../../infrastructure/types/types'
 import EpisodeDetails from '../../components/EpisodeDetailsComponent/EpisodeDetails'

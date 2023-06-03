@@ -1,5 +1,5 @@
 import {ChangeEvent, ReactElement} from 'react'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 type InputSearchProps = {
   filter: string
   // eslint-disable-next-line no-unused-vars

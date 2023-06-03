@@ -1,4 +1,4 @@
-import useFilter from '../../hooks/useFilter'
+import useFilter from '../../hooks/useFilterHook/useFilter'
 import PodcastsContainer from '../../components/PodcastsContainerComponent/PodcastsContainer'
 import InputSearch from '../../components/InputSearchComponent/InputSearch'
 

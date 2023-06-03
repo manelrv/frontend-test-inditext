@@ -7,7 +7,7 @@ import {
   renderHook,
   RenderResult
 } from '@testing-library/react'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 describe('InputSearch', () => {
   const PLACEHOLDER_TEXT = 'Discraceland, Andrew, etc...'
   const originalState = useFetchStatusStore.getState()

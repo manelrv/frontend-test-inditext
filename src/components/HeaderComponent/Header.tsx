@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 import {ReactElement} from "react";
 const Header = (): ReactElement => {
   const navigate = useNavigate()

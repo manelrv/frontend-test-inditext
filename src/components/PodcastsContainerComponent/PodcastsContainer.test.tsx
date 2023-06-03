@@ -3,7 +3,7 @@ import { act, render, renderHook, RenderResult } from '@testing-library/react'
 import PodcastsContainer from './PodcastsContainer'
 import { Podcast } from '../../infrastructure/types/types'
 import { BrowserRouter } from 'react-router-dom'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 
 describe('PodcastsContainer', () => {
   const originalState = useFetchStatusStore.getState()

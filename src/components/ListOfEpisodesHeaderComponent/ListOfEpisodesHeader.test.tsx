@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
 import ListOfEpisodesHeader from './ListOfEpisodesHeader'
 import { act, render, renderHook } from '@testing-library/react'
-import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore'
+import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 
 describe('ListOfEpisodesHeader', () => {
   const originalState = useFetchStatusStore.getState()

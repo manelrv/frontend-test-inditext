@@ -8,7 +8,7 @@ import {
   renderHook,
   RenderResult
 } from '@testing-library/react'
-import usePodcastsStore from '../../infrastructure/stores/podcastsStore'
+import usePodcastsStore from '../../infrastructure/stores/podcastsStore/podcasts'
 
 describe('<PodcastCard/>', () => {
   const podcastId = 'validId'
