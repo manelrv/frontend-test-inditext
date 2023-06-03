@@ -38,9 +38,19 @@ Depending on the mode in which it is executed, the application will behave diffe
 
 ## *Tests*
 ### *Unit tests*
-To run the unit tests, execute `npm run test`. A total of 49 tests are executed across 18 suites.
+To run the unit tests: 
+- Execute `npm run test` to run tests once.
+- Execute `npm run test:watch` to run tests in watch mode.
+
+A total of 49 tests are executed across 18 suites.
 ### *End-to-End tests*
-To run the end-to-end tests, execute `npm run cypress`. A total of 2 tests are executed.
+To run the end-to-end tests: 
+- Execute `npm run cypress` to run tests once. A video of the test execution will be saved in the `cypress/videos` folder. The videos are ignored by git.
+- Execute `npm run cypress:open` to open the Cypress GUI.
+
+*Note: The main application will start on port 8481, so it is necessary to have it free.*
+
+A total of 2 tests are executed.
 
 ## *Considered Restrictions*
 - URLs are clean, so the hash `\#` has not been used for navigation.
