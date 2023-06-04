@@ -1,4 +1,4 @@
-import {ChangeEvent, ReactElement} from 'react'
+import { ChangeEvent, ReactElement } from 'react'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 type InputSearchProps = {
   filter: string
@@ -19,21 +19,21 @@ const InputSearch = ({
     >
       <p
         className={
-          'rounded-xl bg-blue-600 px-4 py-1 text-xl font-bold text-white'
+          'rounded-xl bg-primary px-4 py-1 text-xl font-bold text-white'
         }
       >
         {podcastsCount <= 0 ? '-' : podcastsCount}
       </p>
       <input
         className={
-          'w-1/4 rounded-md border-2 border-gray-300 p-2 focus:border-blue-300 focus:outline-0'
+          'w-1/4 rounded-md border-2 border-gray-300 p-2 focus:border-primary focus:outline-0'
         }
         type={'text'}
         value={filter}
         onChange={handleFilter}
         autoFocus
         disabled={loading}
-        placeholder={'Discraceland, Andrew, etc...'}
+        placeholder={'Disgraceland, Andrew, etc...'}
       />
     </section>
   )
