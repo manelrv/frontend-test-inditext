@@ -57,7 +57,7 @@ describe('<Header/>', () => {
 
   test('Styling is correct', () => {
     expect(component.getByTestId('home-button').firstChild).toHaveClass(
-      'items-center text-2xl font-bold text-blue-600'
+      'items-center text-2xl font-bold text-primary'
     )
   })
 })

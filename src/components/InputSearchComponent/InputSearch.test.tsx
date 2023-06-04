@@ -9,7 +9,7 @@ import {
 } from '@testing-library/react'
 import useFetchStatusStore from '../../infrastructure/stores/fecthStatusStore/fecthStatus'
 describe('InputSearch', () => {
-  const PLACEHOLDER_TEXT = 'Discraceland, Andrew, etc...'
+  const PLACEHOLDER_TEXT = 'Disgraceland, Andrew, etc...'
   const originalState = useFetchStatusStore.getState()
   let component: RenderResult
   beforeEach(() => {
