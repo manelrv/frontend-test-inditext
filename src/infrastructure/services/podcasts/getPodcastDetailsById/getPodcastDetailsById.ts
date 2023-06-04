@@ -1,7 +1,7 @@
-import axios, {CancelToken} from 'axios'
-import {URL_GET_PODCAST_DETAILS} from '../../../constants/constants'
+import axios, { CancelToken } from 'axios'
+import { URL_GET_PODCAST_DETAILS } from '../../../constants/constants'
 import validateJSON from '../../../utils/validateJSON/validateJSON'
-import {PodcastDetails, PodcastEpisode} from '../../../types/types'
+import { PodcastDetails, PodcastEpisode } from '../../../types/types'
 import convertMillisecondsToHHMMSS from '../../../utils/convertMillisecondsToHHMMSS/convertMillisecondsToHHMMSS'
 
 /**
@@ -28,6 +28,14 @@ export const getPodcastDetailsById = async ({
       console.error({ message: error.message, stack: error.stack })
     })
   if (!response) return null
+  if (response?.status !== 200 || response?.data?.status?.http_code !== 200) {
+    console.error({
+      message: 'Error retrieving podcast details',
+      response,
+      status: response?.data?.status
+    })
+    return null
+  }
   const contents = validateJSON(response?.data?.contents)
   if (!contents) return null
   const episodes: PodcastEpisode[] = contents?.results?.map((podcast: any) => {
